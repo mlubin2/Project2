@@ -7,7 +7,7 @@ connection = pymysql.connect(host='localhost',
                              user='root',
                              password = passw,
                              db='fooddesert',
-                             charset='utf8mb4',
+                             charset='utf8',
                              cursorclass=pymysql.cursors.DictCursor)
 
 app = Flask(__name__)
@@ -17,30 +17,34 @@ app = Flask(__name__)
 def welcome():
         """Food Deserts in the United States"""
         return render_template("index.html")
-            
-        )
+    
 
-@app.route("/api/v1.0/fooddesert")
-def Return_db(name):
+@app.route("/api/v1.0/fooddesert/<int:page>")
+def Return_db(page):
         """Return a list of all fooddesert data."""
-        print(name)
         
         try:
+            print ("half way there")
+            
             with connection.cursor() as cursor:
                 
-                sql = "USE fooddesert, Select * FROM censusdf LEFT JOIN fooddf ON fooddf.CensusTract = censusdf.GEOID
-                print(sql)
+                sql = f"Select * FROM censusdf LEFT JOIN fooddf ON fooddf.CensusTract = censusdf.GEOID LIMIT {page*2000},2000;"
+                print("sql")
+
                 cursor.execute(sql)
                 fooddesert = cursor.fetchall()
                 print(type(fooddesert))
+                outputs = []
                 for locations in fooddesert:
-                    
+                    outputs.append(locations) 
                     #search_term = locations["Name"].replace(" ", "").lower()
-                    return jsonify(locations)
+            return jsonify(outputs)
+            return jsonify({"error": f"Now you didnt fuck up"}), 404        
                     
-                    
-        except:
-            pass
+        except Exception as e:
+            print(e)
+
+            pass 
         return jsonify({"error": f"Now you fucked up"}), 404
             
              
