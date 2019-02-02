@@ -19,8 +19,8 @@ def welcome():
         return render_template("index.html")
     
 
-@app.route("/api/v1.0/fooddesert/<int:page>")
-def Return_db(page):
+@app.route("/api/v1.0/fooddesert/<region>")
+def Return_db(region):
         """Return a list of all fooddesert data."""
         
         try:
@@ -28,10 +28,10 @@ def Return_db(page):
             
             with connection.cursor() as cursor:
                 
-                sql = f"Select * FROM censusdf LEFT JOIN fooddf ON fooddf.CensusTract = censusdf.GEOID LIMIT {page*2000},2000;"
+                sql = f"SELECT * FROM fooddesertloc WHERE region = %s;"
                 print("sql")
 
-                cursor.execute(sql)
+                cursor.execute(sql,(region, ))
                 fooddesert = cursor.fetchall()
                 print(type(fooddesert))
                 outputs = []
