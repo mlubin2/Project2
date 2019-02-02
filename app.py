@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, render_template
 from mysql_conn import password as passw
 import pymysql
+import sys
 
 
 connection = pymysql.connect(host='localhost',
@@ -9,6 +10,11 @@ connection = pymysql.connect(host='localhost',
                              db='fooddesert',
                              charset='utf8',
                              cursorclass=pymysql.cursors.DictCursor)
+
+
+sys.path.append("static/js")
+sys.path.append("static/css")
+sys.path.append("static/images")
 
 app = Flask(__name__)
 
