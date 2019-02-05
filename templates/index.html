@@ -15,6 +15,7 @@
 </head>
 <body>
     <div class="header">
+    <!--class="row" makes the viewport narrow-->
         <div class="row">
             <!--<div class=col-xs-12 col-md-12 col-md-offset-0">-->
                 <h1>Food Deserts</h1>
@@ -25,15 +26,35 @@
                     <a href="#data">Data</a>
                     <!--<a href="#charts">Charts</a>-->
 
-                <div class="dropdown">
-                    <button oneclick="myFunction()"
-                class="dropbtn">Charts</button>
-                    <div id="myDropdown" class="dropdown-content">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
+                    <div class="dropdown">
+                        <button onclick="myFunction()" class="dropbtn">Charts</button>
+                        <div id="myDropdown" class="dropdown-content">
+                          <a href="#">Link 1</a>
+                          <a href="#">Link 2</a>
+                          <a href="#">Link 3</a>
+                        </div>
+                        <script>
+                            /* When the user clicks on the button, 
+                            toggle between hiding and showing the dropdown content */
+                            function myFunction() {
+                            document.getElementById("myDropdown").classList.toggle("show");
+                                }
+                        // Close the dropdown if the user clicks outside of it
+                            window.onclick = function(event) {
+                                if (!event.target.matches('.dropbtn')) {
+                                    var dropdowns = document.getElementsByClassName("dropdown-content");
+                                    var i;
+                                    for (i = 0; i < dropdowns.length; i++) {
+                                        var openDropdown = dropdowns[i];
+                                        if (openDropdown.classList.contains('show')) {
+                                            openDropdown.classList.remove('show');
+                                        }
+                                    }
+                                }
+                            }        
+                        </script>                                    
                     </div>
-                </div>
+                
                 </div>
                 <!--creates divs for margin around page-->
                 <div id="left"></div>

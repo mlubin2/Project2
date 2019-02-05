@@ -4,9 +4,14 @@
     width: 50%;
     padding: 10px;
 }
+.h1 {
+  text-align: center;
+}
 .row{
     text-align: center;
+    width: 250px;
 }
+
 
 /*NAVBAR*/
   /* Style the links inside the navigation bar */
@@ -69,14 +74,14 @@
   /* The container <div> - needed to position the dropdown content */
   .dropdown {
     position: relative;
-    display: inline-block;
+    display: block;
   }
   
   /* Dropdown Content (Hidden by Default) */
   .dropdown-content {
     display: none;
     position: absolute;
-    background-color: black;
+    background-color: white;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
@@ -93,12 +98,15 @@
   /* Change color of dropdown links on hover */
   .dropdown-content a:hover {background-color:white}
 
+  /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+  .show {display:block;}
+
   .parallax1 { 
     /* The image used */
     background-image: url("../images/grocery-store.jpg");
   
     /* Set a specific height */
-    height: 500px; 
+    height: 300px; 
   
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
@@ -106,14 +114,17 @@
     background-repeat: no-repeat;
     background-size: cover;
     opacity: .7;
+    border-radius: 10px
   }
   
+
+
   .parallax2 { 
     /* The image used */
     background-image: url("../images/shelf.jpg");
   
     /* Set a specific height */
-    height: 500px; 
+    height: 300px; 
   
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
@@ -121,7 +132,6 @@
     background-repeat: no-repeat;
     background-size: cover;
     opacity: .7;
+    border-radius: 10px
   }
 
-  /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-  .show {display:block;}
