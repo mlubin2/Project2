@@ -12,6 +12,11 @@
     integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
     crossorigin=""></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js"></script>
+    <!--<script type="text/javascript" src="https://unpkg.com/leaflet.markercluster@1.0.3/dist/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.css">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.Default.css">-->
 </head>
 <body>
     <div class="header">
@@ -84,12 +89,20 @@
                     Because there is no standard definition of a food desert, estimates of how much of the population is affected vary by quite a bit. However, it’s safe to say that many Americans have limited access to affordable nutritious foods because they do not live near a supermarket or large grocery store. Transportation is specifically part of the USDA food desert definition. Only common theme among food desert definitions is that there is limited access. Either cite USDA or delete.
                 </p>
             </div>
-            
-            <div id= "map"></div>
+            <div>
+            <div id= "map" class="mapsize"></div>
             <script src="{{url_for('static', filename='js/config.js')}}" type="text/javascript"></script>
             <script src="{{url_for('static', filename='js/logic.js')}}" type="text/javascript"></script>
+            </div>
+            <div>
+                <footer>
+                    <p>Posted by: Hege Refsnes</p>
+                    <p>Contact information: <a href="mailto:someone@example.com">
+                    someone@example.com</a>.</p>
+                  </footer>
+            </div>
         </div>
-    </div">
+    </div>
 </body>
 
 

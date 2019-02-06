@@ -1,7 +1,7 @@
 // Creating map object
 var myMap = L.map("map", {
-    center: [40.7, -73.95],
-    zoom: 11
+    center: [37.09, -95.71],
+    zoom: 4
   });
   
   // Adding tile layer to the map
@@ -12,7 +12,7 @@ var myMap = L.map("map", {
     accessToken: API_KEY
   }).addTo(myMap);
   
-  // Store API query variables
+  //Store API query variables
   var baseURL = "/api/v1.0/fooddesert/";
   var northeastregion = "northeast";
   var southregion = "south";
@@ -27,8 +27,8 @@ var myMap = L.map("map", {
   var urlmw = baseURL + midwestregion;
   var urlw = baseURL + westregion;
   var urlo = baseURL + otherregion;
-  
-  // Grab the data with d3
+ 
+  // Grab the data with d3 - urlo
   d3.json(urlo, function(response) {
   
     // Create a new marker cluster group
@@ -47,11 +47,107 @@ var myMap = L.map("map", {
         markers.addLayer(L.marker([location.INTPTLAT, location.INTPTLONG])
           .bindPopup(response[i].PovertyRate));
       }
-  
+      myMap.addLayer(markers);
+
     }
+
+  // Grab the data with d3 - urlne
+  d3.json(urlne, function(response) {
   
+    // Create a new marker cluster group
+    var markers2 = L.markerClusterGroup();
+
+    // Loop through data
+    for (var i = 0; i < response.length; i++) {
+
+      // Set the data location property to a variable
+      var location = response[i];
+
+      // Check for location property
+      if (location) {
+
+        // Add a new marker to the cluster group and bind a pop-up
+        markers2.addLayer(L.marker([location.INTPTLAT, location.INTPTLONG])
+          .bindPopup(response[i].PovertyRate));
+      }
     // Add our marker cluster layer to the map
-    myMap.addLayer(markers);
+    myMap.addLayer(markers2);
+    }  
   
-  });
+
+
+  // Grab the data with d3 - urlne
+  d3.json(urls, function(response) {
   
+    // Create a new marker cluster group
+    var markers3 = L.markerClusterGroup();
+
+    // Loop through data
+    for (var i = 0; i < response.length; i++) {
+
+      // Set the data location property to a variable
+      var location = response[i];
+
+      // Check for location property
+      if (location) {
+
+        // Add a new marker to the cluster group and bind a pop-up
+        markers3.addLayer(L.marker([location.INTPTLAT, location.INTPTLONG])
+          .bindPopup(response[i].PovertyRate));
+      }
+    // Add our marker cluster layer to the map
+    myMap.addLayer(markers3);
+    }  
+  
+
+
+  // Grab the data with d3 - urlne
+  d3.json(urlmw, function(response) {
+  
+    // Create a new marker cluster group
+    var markers4 = L.markerClusterGroup();
+
+    // Loop through data
+    for (var i = 0; i < response.length; i++) {
+
+      // Set the data location property to a variable
+      var location = response[i];
+
+      // Check for location property
+      if (location) {
+
+        // Add a new marker to the cluster group and bind a pop-up
+        markers4.addLayer(L.marker([location.INTPTLAT, location.INTPTLONG])
+          .bindPopup(response[i].PovertyRate));
+      }
+    // Add our marker cluster layer to the map
+    myMap.addLayer(markers4);
+    }  
+  
+
+
+  // Grab the data with d3 - urlne
+  d3.json(urlw, function(response) {
+  
+    // Create a new marker cluster group
+    var markers5 = L.markerClusterGroup();
+
+    // Loop through data
+    for (var i = 0; i < response.length; i++) {
+
+      // Set the data location property to a variable
+      var location = response[i];
+
+      // Check for location property
+      if (location) {
+
+        // Add a new marker to the cluster group and bind a pop-up
+        markers5.addLayer(L.marker([location.INTPTLAT, location.INTPTLONG])
+          .bindPopup(response[i].PovertyRate));
+      }
+    // Add our marker cluster layer to the map
+    myMap.addLayer(markers5);
+    }  
+  
+
+  })})})})});

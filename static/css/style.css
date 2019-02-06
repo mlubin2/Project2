@@ -1,15 +1,15 @@
 /* Add style for Header and Question block*/
 .header {
     margin: auto;
-    width: 50%;
+    width: 75%;
     padding: 10px;
 }
 .h1 {
   text-align: center;
 }
-.row{
-    text-align: center;
-    width: 250px;
+.mapsize{
+  padding: 30px;
+  height: 500px;
 }
 
 
