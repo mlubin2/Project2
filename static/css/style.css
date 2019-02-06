@@ -12,7 +12,10 @@
   height: 500px;
 }
 
-
+.heatmap{
+  padding: 30px;
+  height: 500px;
+}
 /*NAVBAR*/
   /* Style the links inside the navigation bar */
   .undernav a {
