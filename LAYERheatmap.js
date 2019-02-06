@@ -9,7 +9,9 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
   id: "mapbox.streets",
   accessToken: API_KEY
 }).addTo(myMap);
-
+function markerSize(population) {
+    return population;
+  }
 var url = "http://127.0.0.1:5000/api/v1.0/fooddesert/south";
 
  
@@ -19,21 +21,33 @@ d3.json(url, function(response) {
 
   var heatArray = [];
   var stateMarkers = [];
+  var LowTractMarker = [];
+  var LowTractMarkers = [];
   for (var i = 0; i < response.length; i++) {
     var w = response[i];
-
     
-      heatArray.push([w.INTPTLAT, w.INTPTLONG],w.MedianFamilyIncome);
+    
+      heatArray.push([w.INTPTLAT, w.INTPTLONG,w.MedianFamilyIncome]);
       
       stateMarkers.push(
         L.circle([w.INTPTLAT, w.INTPTLONG], {
           stroke: false,
           fillOpacity: 0.75,
-          color: "white",
-          fillColor: "white",
-          radius: w.POP2010/1000
+          color: "black",
+          fillColor: "black",
+          radius: markerSize(w.LA1and20)
         })
       );
+        LowTractMarkers.push(
+            L.circle([w.INTPTLAT, w.INTPTLONG], {
+              stroke: false,
+              fillOpacity: 0.75,
+              color: "pink",
+              fillColor: "pink",
+              radius: markerSize(w.LAhalfand10)
+            })
+      );
+     
     
       // Setting the marker radius for the city by passing population into the markerSize function
       
@@ -63,13 +77,14 @@ console.log(response[3].LAPOP05_10);
 
 var states = L.layerGroup(stateMarkers);
 
-
+var LowTractMarker = L.layerGroup(LowTractMarkers);
 
 
 
 // Create an overlay object
 var overlayMaps = {
-  "State Population": states
+  "Low Tract .5 and 10": states,
+  "Low Tract 1 and 20": LowTractMarker
 };
 
 // Define a map object
@@ -81,9 +96,8 @@ var overlayMaps = {
 */
 // Pass our map layers into our layer control
 // Add the layer control to the map
-L.control.layers(overlayMaps, {
-  collapsed: false
-}).addTo(myMap);
+L.control.layers(overlayMaps
+).addTo(myMap);
  
 
 });

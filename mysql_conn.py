@@ -1,1 +1,1 @@
-password = "Tabletop02"
+password = "Pikachu@22"
