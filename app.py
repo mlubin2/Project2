@@ -2,10 +2,14 @@ from flask import Flask, jsonify, render_template
 from mysql_conn import password as passw
 import pymysql
 import sys
-import traceback
 
 
-
+connection = pymysql.connect(host='localhost',
+                             user='root',
+                             password = passw,
+                             db='fooddesert',
+                             charset='utf8',
+                             cursorclass=pymysql.cursors.DictCursor)
 
 
 sys.path.append("static/js")
@@ -24,14 +28,6 @@ def welcome():
 @app.route("/api/v1.0/fooddesert/<region>")
 def Return_db(region):
         """Return a list of all fooddesert data."""
-        print(f"received a call for region {region}")
-
-        connection = pymysql.connect(host='localhost',
-                             user='root',
-                             password = passw,
-                             db='fooddesert',
-                             charset='utf8',
-                             cursorclass=pymysql.cursors.DictCursor)
         
         try:
             print ("half way there")
@@ -42,23 +38,19 @@ def Return_db(region):
                 print("sql")
 
                 cursor.execute(sql,(region, ))
-                print("cursor.execute(sql,(region, ))")
                 fooddesert = cursor.fetchall()
-                print("fooddesert = cursor.fetchall()")
                 print(type(fooddesert))
                 outputs = []
                 for locations in fooddesert:
                     outputs.append(locations) 
                     #search_term = locations["Name"].replace(" ", "").lower()
-                #print(f"outputs: {outputs}")
             return jsonify(outputs)
             return jsonify({"error": f"Now you didnt fuck up"}), 404        
                     
         except Exception as e:
-            traceback.print_exc()
+            print(e)
 
             pass 
-            
         return jsonify({"error": f"Now you fucked up"}), 404
             
              
