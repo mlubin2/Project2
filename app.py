@@ -45,13 +45,13 @@ def Return_db(region):
                     outputs.append(locations) 
                     #search_term = locations["Name"].replace(" ", "").lower()
             return jsonify(outputs)
-            return jsonify({"error": f"Now you didnt fuck up"}), 404        
+            return jsonify({"error": f"no errors found"}), 404        
                     
         except Exception as e:
             print(e)
 
             pass 
-        return jsonify({"error": f"Now you fucked up"}), 404
+        return jsonify({"error": f"Error in code check execptions"}), 404
             
              
 
