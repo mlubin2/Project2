@@ -40807,32 +40807,26 @@ var json = [
 //"TractHUNV": 1081,
 //"TractSNAP": 2682
 
+let region = []
+let mfi = []
+
 for(var i in json)
 {
-var region=json[i].region
-var mfi=json[i].MedianFamilyIncome
-//console.log(region) //all regions
-//console.log(mfi) //all MedianFamilyIncome
+region.push(json[i].region)
+mfi.push(json[i].MedianFamilyIncome)
 }
+console.log(mfi)
+console.log(region)
+var data = [{
+    values: mfi,
+    labels: region,
+    type: 'pie'
+  }];  
 
-
-
-var trace1 = {
-  x: region,
-  y: mfi,
-  type: "bar",
-  text: [2]
-};
-
-// Create the data array for the plot
-var data = [trace1];
-
-// Define the plot layout
-var layout = {
-  title: "Regional MHI",
-  xaxis: { title: "Region" },
-  yaxis: { title: "Medium Household Income" }
-};
-
-// Plot the chart to a div tag with id "bar-plot"
-Plotly.newPlot("bar-plot", data, layout);
+  var layout = {
+    height: 400,
+    width: 500
+  };
+  
+ 
+  Plotly.newPlot('pie', data, layout);
