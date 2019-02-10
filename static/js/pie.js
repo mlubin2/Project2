@@ -40817,11 +40817,11 @@ mfi.push(json[i].MedianFamilyIncome)
 }
 console.log(mfi)
 console.log(region)
-var data = [{
+var data = {
     values: mfi,
     labels: region,
     type: 'pie'
-  }];  
+  };  
 
   var layout = {
     height: 400,
