@@ -2,6 +2,7 @@ from flask import Flask, jsonify, render_template
 from mysql_conn import password as passw
 import pymysql
 import sys
+import pandas as pd
 
 
 connection = pymysql.connect(host='localhost',
@@ -24,6 +25,11 @@ def welcome():
         """Food Deserts in the United States"""
         return render_template("index.html")
     
+@app.route("/pie.html")
+def pie():
+        """Food Deserts in the United States"""
+        return render_template("pie.html")
+
 
 @app.route("/api/v1.0/fooddesert/<region>")
 def Return_db(region):
@@ -53,7 +59,9 @@ def Return_db(region):
             pass 
         return jsonify({"error": f"Error in code check execptions"}), 404
             
-             
+@app.route("/loadChartData")
+def loadCSV():
+    return jsonify("fooddesert.csv")
 
 if __name__ == "__main__":
     app.run(debug=True)

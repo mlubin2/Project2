@@ -79,7 +79,8 @@
         tooltip.append('div')                                           
           .attr('class', 'percent');                                    
 
-        d3.csv('fooddesert.csv', function(error, dataset) {
+        d3.csv("./templates/fooddesert.csv", function(error, dataset) {
+          console.log(error)
           dataset.forEach(function(d) {
             d.count = +d.count;
           });
